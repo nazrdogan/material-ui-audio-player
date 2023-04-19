@@ -3,8 +3,8 @@ import Slider from '@mui/material/Slider';
 import Paper from '@mui/material/Paper';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Typography from '@mui/material/Typography';
-import { useTheme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { useTheme, makeStyles } from '@mui/material/styles';
+
 // tslint:disable-next-line
 import Grid, { GridSpacing } from '@mui/material/Grid';
 import Repeat from '@mui/icons-material/Repeat';
@@ -191,7 +191,10 @@ interface IAudioPlayerProps {
   onPlayed?: (event: any) => void;
   onPaused?: (event: any) => void;
   onFinished?: (event: any) => void;
-  getPlayer?: (player: HTMLAudioElement | null, dispatch: React.Dispatch<any>) => void;
+  getPlayer?: (
+    player: HTMLAudioElement | null,
+    dispatch: React.Dispatch<any>
+  ) => void;
   onClose?: () => void;
 }
 
@@ -220,7 +223,10 @@ const AudioPlayer: React.FunctionComponent<IAudioPlayerProps> = ({
   onPlayed = (event: any) => {},
   onPaused = (event: any) => {},
   onFinished = (event: any) => {},
-  getPlayer = (player: HTMLAudioElement | null, dispatch: React.Dispatch<any>) => {},
+  getPlayer = (
+    player: HTMLAudioElement | null,
+    dispatch: React.Dispatch<any>
+  ) => {},
   onClose = () => {},
 }) => {
   const player = React.useRef<HTMLAudioElement | null>(null);
@@ -234,10 +240,10 @@ const AudioPlayer: React.FunctionComponent<IAudioPlayerProps> = ({
   const componentsOrder =
     order === AudioPlayerComponentsOrder.standart ? 'unset' : '-1';
   const componentStyles = { width, height, playerColors, componentsOrder };
+  // @ts-ignore
   const classes = useComponentStyles(componentStyles);
-  const classNames: Partial<IAudioPlayerClassNameProps> = useStyles(
-    componentStyles
-  );
+  const classNames: Partial<IAudioPlayerClassNameProps> =
+    useStyles(componentStyles);
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const isSingleTime = React.useMemo(() => time === TimeOption.single, [time]);
   const isTimePositionStart = React.useMemo(
@@ -245,9 +251,10 @@ const AudioPlayer: React.FunctionComponent<IAudioPlayerProps> = ({
     [timePosition]
   );
   const [showCurrentTime, toggleTime] = React.useState(true);
-  const toggleCurrentTime = React.useCallback(() => toggleTime((val) => !val), [
-    toggleTime,
-  ]);
+  const toggleCurrentTime = React.useCallback(
+    () => toggleTime((val) => !val),
+    [toggleTime]
+  );
 
   const [state, dispatch] = React.useReducer(reducer, inititalState);
   const [
@@ -292,7 +299,6 @@ const AudioPlayer: React.FunctionComponent<IAudioPlayerProps> = ({
     }
   };
 
-
   React.useEffect(() => {
     if (player && player.current) {
       if (player.current.readyState > 3) {
@@ -302,7 +308,7 @@ const AudioPlayer: React.FunctionComponent<IAudioPlayerProps> = ({
         _setPlayerAutoplay();
       }
       if (isSafari) {
-        player.current.load()
+        player.current.load();
       }
       player.current.addEventListener('canplay', onLoad);
       player.current.addEventListener('timeupdate', handlePlayerTimeUpdate);
@@ -328,12 +334,12 @@ const AudioPlayer: React.FunctionComponent<IAudioPlayerProps> = ({
   React.useEffect(() => {
     if (player?.current && typeof muted === 'boolean') {
       if (muted) {
-        _muteAudio()
+        _muteAudio();
       } else {
-        _unmuteAudio()
+        _unmuteAudio();
       }
     }
-  }, [muted])
+  }, [muted]);
 
   if (debug) {
     // tslint:disable-next-line
@@ -414,7 +420,7 @@ const AudioPlayer: React.FunctionComponent<IAudioPlayerProps> = ({
         />
       </Grid>
       {download && (
-        <AudioDownloadsControl src={src} playerColors={playerColors}/>
+        <AudioDownloadsControl src={src} playerColors={playerColors} />
       )}
       {volume && (
         <AudioVolumeControl

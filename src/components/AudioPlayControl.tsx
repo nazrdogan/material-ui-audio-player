@@ -1,9 +1,9 @@
 import * as React from 'react';
-import makeStyles from '@mui/styles/makeStyles';
 import PauseCircleFilled from '@mui/icons-material/PauseCircleFilled';
 import PlayCircleFilledWhite from '@mui/icons-material/PlayCircleFilledWhite';
 import Replay from '@mui/icons-material/Replay';
 import cx from 'classnames';
+import { makeStyles } from '@mui/material/styles';
 
 import { IAudioPlayerColors, Icons } from './AudioPlayer';
 import PLAYER from './state/player';
@@ -41,6 +41,7 @@ const AudioPlayControl: React.FunctionComponent<IAudioPlayControlProps> = ({
     ReplayIcon = Replay,
     PauseIcon = PauseCircleFilled,
   } = icons;
+  // @ts-ignore
   const classes = useComponentStyles({ playerColors });
   switch (playerStatus) {
     case PLAYER.STATUS.PLAY:

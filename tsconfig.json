@@ -15,6 +15,7 @@
     "strict": true,
     "rootDirs": ["src", "stories"],
     "baseUrl": "src",
+    "skipLibCheck": true,
     "outDir": "dist"
   },
   "exclude": ["node_modules", "build", "scripts", "src/tests", "dist"],

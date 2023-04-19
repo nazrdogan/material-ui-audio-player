@@ -2,10 +2,11 @@ import * as React from 'react';
 import Slider from '@mui/material/Slider';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import makeStyles from '@mui/styles/makeStyles';
+
 import VolumeOff from '@mui/icons-material/VolumeOff';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import cx from 'classnames';
+import { makeStyles } from '@mui/material/styles';
 
 import { IAudioPlayerColors, Icons } from './AudioPlayer';
 import PLAYER from './state/player';
@@ -74,6 +75,7 @@ export const AudioVolumeControl: React.FunctionComponent<IAudioDownloadsControl>
   icons = {},
   playerColors,
 }) => {
+  // @ts-ignore
   const classes = useComponentStyles({ playerColors });
   const { VolumeUpIcon = VolumeUp, VolumeOffIcon = VolumeOff } = icons;
   const handleVolumeChange = (event: object, value: any) => {

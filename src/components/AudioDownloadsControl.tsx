@@ -3,8 +3,7 @@ import Paper from '@mui/material/Paper';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { useTheme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
+import { useTheme, makeStyles } from '@mui/material/styles';
 import CloudDownload from '@mui/icons-material/CloudDownload';
 import cx from 'classnames';
 
@@ -55,15 +54,13 @@ interface IAudioDownloadsControl {
   classNames?: any;
 }
 
-export const AudioDownloadsControl: React.FunctionComponent<IAudioDownloadsControl> = ({
-  src,
-  playerColors,
-  classNames = {},
-}) => {
+export const AudioDownloadsControl: React.FunctionComponent<
+  IAudioDownloadsControl
+> = ({ src, playerColors, classNames = {} }) => {
+  // @ts-ignore
   const classes = useComponentStyles({ playerColors });
-  const [downloadsDropdownOpened, openDownloadsDropdown] = React.useState(
-    false
-  );
+  const [downloadsDropdownOpened, openDownloadsDropdown] =
+    React.useState(false);
   const theme: { [key: string]: any } = useTheme();
   const toggleDownloadsDropdown = (value: boolean) => () => {
     openDownloadsDropdown(value);

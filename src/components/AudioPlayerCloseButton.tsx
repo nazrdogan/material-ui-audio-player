@@ -1,7 +1,8 @@
 import * as React from 'react';
-import makeStyles from '@mui/styles/makeStyles';
+
 import Close from '@mui/icons-material/Close';
 import cx from 'classnames';
+import {  makeStyles } from '@mui/material/styles';
 
 import { IAudioPlayerColors, Icons } from './AudioPlayer';
 
@@ -33,6 +34,7 @@ const AudioPlayCloseButton: React.FunctionComponent<IAudioPlayControlProps> = ({
   classNames = {},
 }) => {
   const { CloseIcon = Close } = icons;
+  // @ts-ignore
   const classes = useComponentStyles({ playerColors });
   return (
     <CloseIcon
